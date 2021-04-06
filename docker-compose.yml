@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  jenkins:
+    build: .
+    container_name: jenkins-compose
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+    environment:
+      - 'DOCKER_HOST=tcp://docker:2376'
+      - 'DOCKER_CERT_PATH=/certs/client'
+      - 'DOCKER_TLS_VERIFY=1'
+    networks:
+      - ci-env
+    ports:
+      - '8081:8080'
+
+  docker:
+    image: docker:dind 
+    container_name: docker-server
+    privileged: true
+    environment:
+      - 'DOCKER_TLS_CERTDIR=/certs'
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client
+    networks:
+      - ci-env
+    ports:
+      - '2376:2376'
+
+networks:
+  ci-env:
+
+volumes:
+  jenkins-data:
+  jenkins-docker-certs:
