@@ -39,6 +39,7 @@ git:4.7.1
 github-api:1.123
 github-branch-pr-change-filter:1.2.4
 github-branch-source:2.10.2
+github-checks:1.0.12
 github-issues:1.2.4
 github-oauth:0.33
 github-pr-comment-build:2.3
