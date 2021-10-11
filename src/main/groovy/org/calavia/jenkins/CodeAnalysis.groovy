@@ -13,7 +13,7 @@ class CodeAnalysis implements Serializable {
 
     private static final long serialVersionUID = 1L
     private static final String MOLECULE_COMMAND = 'molecule lint'
-    private static final String SONAR_COMMAND = 'sonar-scanner'
+    static final String SONAR_COMMAND = 'sonar-scanner'
     private static final String YAMLLINT_COMMAND = 'yamllint .'
 
     enum Types {
@@ -48,7 +48,7 @@ class CodeAnalysis implements Serializable {
     }
 
     private static String sonarCommand(Map<String,String> args) {
-        return SONAR_COMMAND + args
+        return  CodeAnalysis.SONAR_COMMAND  + args
     }
 
 }
